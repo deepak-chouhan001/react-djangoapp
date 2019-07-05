@@ -42,16 +42,16 @@ class Login extends Component {
 
         // let isLoggedIn;
         let formData1 = new FormData();
-        formData1.append('email', this.state.email)
+        formData1.append('username', this.state.email)
         formData1.append('password', this.state.password)
 
         axios({
             method: 'post',
-            // url: 'http://localhost/rest/login.php',
-            url: 'https://demo.aminfocraft.com/reactapi/login.php',
+            url: 'https://restdjangoapi.herokuapp.com/login/',
+            // url: 'https://demo.aminfocraft.com/reactapi/login.php',
             // url: 'http://localhost:8000/api-token-auth/',
             data: formData1,
-            config: { headers: {'Content-Type': 'multipart/form-data' }}
+            config: { headers: {'Content-Type': 'form-data' }}
         })
         .then( (response)=> {
             //handle success
@@ -64,8 +64,10 @@ class Login extends Component {
                         isLoggedIn: true
                 });
                 store.set('loggedIn', true);
-                store.set('userdata',response.data);
-                store.set('userid',response.data.data.id);
+                // store.set('userdata',response.data);
+                // store.set('userid',response.data.data.id);
+                store.set('userid',response.user_id);
+                store.set('token',response.key);
                 alert("You are successfully signed in...");
                 setTimeout(() => {
                      window.location.reload();

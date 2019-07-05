@@ -27,7 +27,7 @@ class Home extends Component {
         //                 ];
         this.state = {
             // isLoggedIn: true,
-            username:udata.data.fullname,
+            username:"User",
             // selUser:null,
             myData : [
                         // {value:'Afghanistan',selected:true},
@@ -74,24 +74,25 @@ class Home extends Component {
 
         //  let isLoggedIn;
          let formData1 = new FormData();
-         let udata = store.get('userdata');
-        formData1.append('userid', udata.data.id)
+         // let udata = store.get('userdata');
+        // formData1.append('userid', udata.data.id)
 
         axios({
-            method: 'post',
-            // url: 'http://localhost/rest/userdata.php',
-            url: 'https://demo.aminfocraft.com/reactapi/userdata.php',
+            method: 'get',
+            url: 'https://restdjangoapi.herokuapp.com/users-list/',
+            // url: 'https://demo.aminfocraft.com/reactapi/userdata.php',
             data: formData1,
-            config: { headers: {'Content-Type': 'multipart/form-data' }}
+            config: { headers: {'Content-Type': 'form-data' }}
         })
         .then( (response)=> {
             //handle success
             console.log("--new",response);
-            console.log("--success",response.data.success);
-            if(response.data.success === 'true' || response.data.success === true)
+            console.log("--success----",response.data);
+            console.log("--length",Object.getOwnPropertyNames(response.data).length);
+            if(Object.getOwnPropertyNames(response.data).length >= 1)
             {
                 this.setState({
-                        myData : response.data.data
+                        myData : response.data
                 });
             }
 
@@ -127,6 +128,7 @@ class Home extends Component {
         const { username,myData, selUserData } = this.state;
         
         console.log("selUserData",selUserData);
+        console.log("myData------",myData);
 
         let newSelect = [];
         myData.map((e, key) => {
@@ -145,7 +147,7 @@ class Home extends Component {
                 console.log("graph data",myUser);
                 console.log("selected user data",selUserData);
                 myUser.map((e, key) => {
-                    var temp = {label:e.text,y:parseInt(e.value)}
+                    var temp = {label:e.month,y:parseInt(e.value)}
                     data1.push(temp);
                     return data1;
                 })
@@ -235,10 +237,10 @@ class Home extends Component {
                     </Col>
                     <Col xs={10} md={8} className="gender">
                         <FormGroup>
-                          <Radio name="gender" checked={selUserData.gender === 'male'}  inline>
+                          <Radio name="gender" checked={selUserData.gender === 'M'}  inline>
                             Male
                           </Radio>{' '}
-                          <Radio name="gender" checked={selUserData.gender === 'female'} inline>
+                          <Radio name="gender" checked={selUserData.gender === 'F'} inline>
                             Female
                           </Radio>{' '}
                           
@@ -246,7 +248,7 @@ class Home extends Component {
                     </Col>
                     <Col xs={12} md={12} className="pd-5">
                     <ControlLabel>
-                       Signed Up On {selUserData.createtime}
+                       Signed Up On {selUserData.date_joined}
                     </ControlLabel>
                     </Col>
                     </Col>
