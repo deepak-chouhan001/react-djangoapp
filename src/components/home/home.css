@@ -5,6 +5,9 @@
     padding: 40px 40px;
     background: #fff;
 }*/
+.container{
+	margin-bottom: 15px;
+}
 .navbar-brand>img {
     display: -webkit-inline-box !important;
 }

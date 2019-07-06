@@ -202,10 +202,11 @@ class Home extends Component {
                     </Nav>
                   </Navbar.Collapse>
                 </Navbar>
+                <div className="container">
                 <Row className="show-grid">
                 <h1 className="center">Welcome to {username}</h1>
-                <Col xs={4} md={4}></Col>
-                <Col xs={4} md={4}>
+                <Col xs={12} md={4}></Col>
+                <Col xs={12} md={4}>
                 <Form>
                   <FormGroup controlId="formControlsSelect">
                   <ControlLabel>Select User</ControlLabel>
@@ -254,7 +255,7 @@ class Home extends Component {
                     </Col>
                     <Col xs={12} md={12} className="hr">
                         <ControlLabel className="pd-5">
-                            {selUserData.fullname } has connected 35 times
+                            {selUserData.fullname } has connected {selUserData.connections} times
                         </ControlLabel>
                         <br/>
                         <p>
@@ -272,10 +273,13 @@ class Home extends Component {
                     </div>
                     
                 </Col>
-                <Col xs={12} md={4} className="hr">
+                <Col xs={12} md={4}>
+                <Col xs={12} md={12} className="hr">
                       <CanvasJSChart options = {options} />
                     </Col>
+                </Col>
                 </Row>
+                    </div>
                     </div>
                         )
         }else{
@@ -300,10 +304,11 @@ class Home extends Component {
                     </Nav>
                   </Navbar.Collapse>
                 </Navbar>
+                <div className="container">
                 <Row className="show-grid">
                 <h1 className="center">Welcome to {username}</h1>
-                <Col xs={4} md={4}></Col>
-                <Col xs={4} md={4}>
+                <Col xs={12} md={4}></Col>
+                <Col xs={12} md={4}>
                 <Form>
                   <FormGroup controlId="formControlsSelect">
                   <ControlLabel>Select User</ControlLabel>
@@ -313,6 +318,7 @@ class Home extends Component {
                 </Form>
                 </Col>
                 </Row>
+                </div>
                 </div>
             )
         }

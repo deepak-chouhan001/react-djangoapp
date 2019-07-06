@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from 'axios';
 import store from 'store';
 import { Redirect } from "react-router-dom";
-import { Row, Form, FormGroup, FormControl, ControlLabel, Button } from 'react-bootstrap';
+import { Row, Col, Form, FormGroup, FormControl, ControlLabel, Button } from 'react-bootstrap';
 import './login.css';
 
 class Login extends Component {
@@ -95,8 +95,9 @@ class Login extends Component {
            
 
             return (
-                <div className="Login">
-                    <Row>
+                <div className="Login container">
+                    <Row className="myborder">
+                    <Col xs={12} md={12}>
                     <h1>Login {isLoggedIn} </h1>
                         <Form onSubmit={this.loginnew}>
                             <FormGroup controlId="email">
@@ -111,6 +112,7 @@ class Login extends Component {
                             <Button block>Register</Button>
                             <Button bsStyle="link" className="pull-right">Forgot Password</Button>
                         </Form>
+                        </Col>
                     </Row>
                 </div>
             )
